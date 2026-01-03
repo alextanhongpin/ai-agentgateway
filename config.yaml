@@ -1,0 +1,18 @@
+binds:
+- port: 3000
+  listeners:
+  - routes:
+    - backends:
+      - ai:
+          provider:
+            openAI:
+              model: llama3.2
+          name: ollama
+          hostOverride: localhost:11434
+          pathOverride: /v1/chat/completions
+      policies:
+        urlRewrite:
+          authority:
+            full: localhost:11434
+          path:
+            full: /v1
